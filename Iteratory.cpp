@@ -62,22 +62,23 @@ ifstream plik2;
 }
  void garaz::wczytajZPliku(const char *nazwa)
 {
+	struct uczen wprowadzany;
 ifstream plik;
 plik.open(nazwa);  //otwarcie pliku
    
    if(plik.good())  //sprawdzenie czy plik istnieje
             while(!plik.eof())  //petla wykonuje sie az program dojedzie do konca pliku
-                  {
-                 for (vector<struct uczen>::iterator it = spis.begin(); it != spis.end(); ++it)
+                 // (vector<struct uczen>::iterator it = spis.begin(); it != spis.end(); ++it)
                  {
-                plik    << it->numer << " "
-                        << it->imie << " "
-                        << it->nazwisko << " "
-                        << it->pesel << " "
-                        << it->adres << "\n";
+                plik    >> wprowadzany.numer 
+                        >> wprowadzany.imie 
+                        >> wprowadzany.nazwisko 
+                        >> wprowadzany.pesel
+                        >> wprowadzany.adres;
+                         spis.push_back(wprowadzany); //TU WSTAW do tablicy nowy rekord
 				 }
+                  
                    
-                   }
                    plik.close();  //zamkniecie pliku tekstowego
 
 cout<<endl;
@@ -91,7 +92,7 @@ void garaz::zapiszDoPliku(const char *nazwa)
         plik1.open(nazwa);
         for (vector<struct uczen>::iterator it = spis.begin(); it != spis.end(); ++it)
         {
-                plik1 << it->cout<<"["<<endl<<"{"<<numer<<":"<<imie<<":"<<nazwisko<<":"<<pesel<<":"<<adres<<"}"<<"}"<< "\n";
+                plik1 <<"["<<endl<<"{"<<it->numer<<":"<<it->imie<<":"<<it->nazwisko<<":"<<it->pesel<<":"<<it->adres<<"}"<<"}"<< "\n";
         }
         plik1.close();  
 }
