@@ -92,7 +92,8 @@ void garaz::zapiszDoPliku(const char *nazwa)
         plik1.open(nazwa);
         for (vector<struct uczen>::iterator it = spis.begin(); it != spis.end(); ++it)
         {
-                plik1 <<"["<<endl<<"{"<<it->numer<<":"<<it->imie<<":"<<it->nazwisko<<":"<<it->pesel<<":"<<it->adres<<"}"<<"}"<< "\n";
+                  plik1 <<"["<<"{"<<it->numer<<":"<<it->imie<<":"<<it->nazwisko<<":"<<it->pesel<<":"<<it->adres<<"}"<<"]"<< "\n";
+               cout <<"["<<"{"<<it->numer<<":"<<it->imie<<":"<<it->nazwisko<<":"<<it->pesel<<":"<<it->adres<<"}"<<"]"<< "\n";
         }
         plik1.close();  
 }
